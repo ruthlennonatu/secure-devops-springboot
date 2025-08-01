@@ -1,0 +1,8 @@
+rules:
+  - id: insecure-log
+    pattern: logger.debug($MSG)
+    message: "Avoid debug logs with sensitive data"
+    severity: WARNING
+    languages: [java]
+    metadata:
+      category: security
