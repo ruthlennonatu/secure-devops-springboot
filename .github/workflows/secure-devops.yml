@@ -50,8 +50,8 @@ jobs:
 
     - name: Run Gitleaks (Secrets Detection)
       uses: gitleaks/gitleaks-action@v2
-      with:
-        config-path: .gitleaks.toml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkov (IaC Security)
       uses: bridgecrewio/checkov-action@master
@@ -67,6 +67,7 @@ jobs:
         name: codecov-java
 
     - name: Dependabot Metadata
+      if: github.actor == 'dependabot[bot]'
       uses: dependabot/fetch-metadata@v1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
