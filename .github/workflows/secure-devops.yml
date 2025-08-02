@@ -35,11 +35,13 @@ jobs:
         scan-ref: '.'
 
     - name: Run Snyk Code Scan
-      uses: snyk/actions/maven@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      uses: snyk/actions/setup@master
       with:
-        command: test
+        version: latest
+      - name: Run Snyk test for Maven
+        run: snyk test --all-projects
+        env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     - name: Run Gitleaks (Secrets Detection)
       uses: gitleaks/gitleaks-action@v2
