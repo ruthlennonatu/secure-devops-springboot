@@ -7,7 +7,13 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jre
 
 # Create a non-root user
-RUN useradd -m appuser
+# RUN useradd -m appuser
+# USER appuser
+
+# Set ownership and permissions
+RUN chown -R appuser:appuser /app && chmod 755 /app/app.jar
+
+# Use non-root user
 USER appuser
 
 # Copy built JAR
