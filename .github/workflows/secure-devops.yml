@@ -67,6 +67,7 @@ jobs:
         name: codecov-java
 
     - name: Dependabot Metadata
+      if: ${{ github.actor == 'dependabot[bot]' }}
       uses: dependabot/fetch-metadata@v1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
