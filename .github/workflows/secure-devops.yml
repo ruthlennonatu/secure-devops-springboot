@@ -38,7 +38,8 @@ jobs:
       uses: snyk/actions/setup@master
       with:
         version: latest
-      - name: Run Snyk test for Maven
+    
+    - name: Run Snyk test for Maven
         run: snyk test --all-projects
         env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
