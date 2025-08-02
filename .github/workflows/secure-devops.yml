@@ -5,7 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
+permissions:
+  contents: read
+  security-events: write
+  id-token: write
+  
 jobs:
   build-and-secure:
     runs-on: ubuntu-latest
