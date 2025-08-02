@@ -46,8 +46,10 @@ jobs:
 
     - name: Run Gitleaks (Secrets Detection)
       uses: gitleaks/gitleaks-action@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        config-path: .gitleaks.toml
+        args: detect --source=. --config=.gitleaks.toml --verbose
 
     - name: Checkov (IaC Security)
       uses: bridgecrewio/checkov-action@master
